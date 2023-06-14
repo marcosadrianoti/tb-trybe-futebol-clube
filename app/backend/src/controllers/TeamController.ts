@@ -12,7 +12,7 @@ export default class TeamController {
     res.status(200).json(serviceResponse.data);
   }
 
-  public async findByPkTeams(req: Request, res: Response) {
+  public async findByOneTeam(req: Request, res: Response) {
     const { id } = req.params;
     const serviceResponse = await this._teamService.findByOneTeam(Number(id));
     if (!serviceResponse) {
