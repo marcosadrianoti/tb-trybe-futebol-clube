@@ -13,11 +13,11 @@ export default class TeamController {
   }
 
   public async findByPkTeams(req: Request, res: Response) {
-    const id = Number(req.params);
-    const serviceResponse = await this._teamService.findByOneTeam(id);
+    const { id } = req.params;
+    const serviceResponse = await this._teamService.findByOneTeam(Number(id));
     if (!serviceResponse) {
       return res.status(404).json({ message: 'Team not found ' });
     }
-    return res.status(200).json(serviceResponse);
+    return res.status(200).json(serviceResponse.data);
   }
 }
