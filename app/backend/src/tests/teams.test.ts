@@ -6,15 +6,13 @@ import chaiHttp = require('chai-http');
 import { app } from '../app';
 import SeqTeamModel from '../database/models/SeqTeamModel';
 import { teamsMock, teamMock } from './mocks/teams.mock';
-// import { ITeams } from '../Interfaces/ITeams';
-
-// import { Response } from 'superagent';
 
 chai.use(chaiHttp);
 
 const { expect } = chai;
 
 describe('Teams', () => {
+  beforeEach(sinon.restore);
   it('Get all teams', async () => {
     sinon
       .stub(SeqTeamModel, 'findAll')
@@ -25,11 +23,11 @@ describe('Teams', () => {
   });
   it('Get by id',async () => {
     sinon
-      .stub(SeqTeamModel, 'findByPk')
+      .stub(SeqTeamModel, 'findOne')
       .resolves(teamMock as any);
     const { status, body } = await chai.request(app).get('/teams/2')
     expect(status).to.equal(200);
-    expect(body).to.equal(teamMock);
+    expect(body).to.deep.equal(teamMock);
   })
   /**
    * Exemplo do uso de stubs com tipos
