@@ -9,9 +9,6 @@ export default class LoginController {
 
   public async login(req: Request, res: Response): Promise<Response> {
     const { email, password } = req.body;
-    if (!email || !password) {
-      return res.status(400).json({ message: 'All fields must be filled' });
-    }
     const ServiceResponse = await this._loginService.login(email, password);
     const statusHttp = mapStatusHTTP(ServiceResponse.status);
     if (ServiceResponse.status !== 'SUCCESSFUL') {

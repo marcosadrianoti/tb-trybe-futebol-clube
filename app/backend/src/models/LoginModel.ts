@@ -3,8 +3,9 @@ import SeqUserModel from '../database/models/SeqUserModel';
 
 export default class LoginModel {
   private _seqUserModel = SeqUserModel;
-  public async userLogin(email: IUser['email']): Promise<IUser | null> {
+  public async userLogin(email: string): Promise<IUser | null> {
     const user = await this._seqUserModel.findOne({ where: { email } });
-    return user;
+    // console.log(user);
+    return user?.dataValues;
   }
 }
