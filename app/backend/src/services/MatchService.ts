@@ -5,7 +5,7 @@ export default class MatchService {
   private _seqMatcheModel = SeqMatcheModel;
 
   public async findAllMatches():Promise<ServiceResponse<SeqMatcheModel[]>> {
-    const matches = await this._seqMatcheModel.findAll(
+    const allMatches = await this._seqMatcheModel.findAll(
       {
         include: [
           { association: 'homeTeam',
@@ -18,6 +18,26 @@ export default class MatchService {
         ],
       },
     );
-    return { status: 'SUCCESSFUL', data: matches };
+    return { status: 'SUCCESSFUL', data: allMatches };
+  }
+
+  public async findInProgress(inProgress: boolean):Promise<ServiceResponse<SeqMatcheModel[]>> {
+    const inProgressMatches = await this._seqMatcheModel.findAll(
+      {
+        include: [
+          { association: 'homeTeam',
+            attributes: ['teamName'],
+          },
+          {
+            association: 'awayTeam',
+            attributes: ['teamName'],
+          },
+        ],
+        where: {
+          inProgress,
+        },
+      },
+    );
+    return { status: 'SUCCESSFUL', data: inProgressMatches };
   }
 }
