@@ -48,4 +48,13 @@ export default class MatchService {
     );
     return { status: 'SUCCESSFUL', data: { message: 'finished' } };
   }
+
+  public async updateMatch(homeTeamGoals: number, awayTeamGoals: number, id: number)
+    :Promise<ServiceResponse<object>> {
+    await this._seqMatcheModel.update(
+      { homeTeamGoals, awayTeamGoals },
+      { where: { id } },
+    );
+    return { status: 'SUCCESSFUL', data: { message: 'Updated match' } };
+  }
 }
