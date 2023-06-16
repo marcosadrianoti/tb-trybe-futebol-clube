@@ -57,4 +57,15 @@ export default class MatchService {
     );
     return { status: 'SUCCESSFUL', data: { message: 'Updated match' } };
   }
+
+  public async postNewMatch(newMatch: {
+    homeTeamId: number,
+    awayTeamId: number,
+    homeTeamGoals: number,
+    awayTeamGoals: number,
+    inProgress: boolean,
+  }):Promise<ServiceResponse<object>> {
+    const InsertedMatch = await this._seqMatcheModel.create(newMatch);
+    return { status: 'SUCCESSFUL_CREATED', data: InsertedMatch.dataValues };
+  }
 }

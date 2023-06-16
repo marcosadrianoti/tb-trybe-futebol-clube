@@ -1,5 +1,7 @@
 import { Request, Response } from 'express';
 import MatchService from '../services/MatchService';
+// import SeqMatcheModel from '../database/models/SeqMatcheModel';
+import SeqTeamModel from '../database/models/SeqTeamModel';
 
 export default class MatchController {
   constructor(
@@ -30,5 +32,31 @@ export default class MatchController {
     const serviceResponse = await this._matchService
       .updateMatch(Number(homeTeamGoals), Number(awayTeamGoals), Number(id));
     res.status(200).json(serviceResponse.data);
+  }
+
+  public async isThereTeam(id: number) {
+    console.log(this);
+    const isThere = await SeqTeamModel.findOne({ where: { id } });
+
+    return isThere;
+  }
+
+  public async postNewMatch(req: Request, res: Response) {
+    const newMatch = req.body;
+    if (newMatch.homeTeamId === newMatch.awayTeamId) {
+      return res.status(422)
+        .json({ message: 'It is not possible to create a match with two equal teams' });
+    }
+    const isThereHomeTeam = await this.isThereTeam(newMatch.homeTeamId);
+    const isThereAwayTeam = await this.isThereTeam(newMatch.awayTeamId);
+
+    if (!isThereHomeTeam || !isThereAwayTeam) {
+      return res.status(404)
+        .json({ message: 'There is no team with such id!' });
+    }
+    const inProgress = true;
+    const serviceResponse = await this._matchService
+      .postNewMatch({ ...newMatch, inProgress });
+    res.status(201).json(serviceResponse.data);
   }
 }
