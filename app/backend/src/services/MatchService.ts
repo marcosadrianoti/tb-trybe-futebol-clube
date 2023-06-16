@@ -40,4 +40,12 @@ export default class MatchService {
     );
     return { status: 'SUCCESSFUL', data: inProgressMatches };
   }
+
+  public async finishMatch(id: number):Promise<ServiceResponse<object>> {
+    await this._seqMatcheModel.update(
+      { inProgress: false },
+      { where: { id } },
+    );
+    return { status: 'SUCCESSFUL', data: { message: 'finished' } };
+  }
 }
