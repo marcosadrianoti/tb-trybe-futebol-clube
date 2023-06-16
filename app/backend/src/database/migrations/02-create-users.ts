@@ -1,4 +1,4 @@
-import { Model, QueryInterface, INTEGER, STRING } from "sequelize";
+import { Model, QueryInterface, DataTypes } from "sequelize";
 
 export default {
   up(queryInterface: QueryInterface) {
@@ -7,23 +7,23 @@ export default {
         allowNull: false,
         primaryKey: true,
         autoIncrement: true,
-        type: INTEGER,
+        type: DataTypes.INTEGER,
       },
       username: {
         allowNull: false,
-        type: STRING,
+        type: DataTypes.STRING,
       },
       role: {
         allowNull: false,
-        type: STRING,
+        type: DataTypes.STRING,
       },
       email: {
         allowNull: false,
-        type: STRING,
+        type: DataTypes.STRING,
       },
       password: {
         allowNull: false,
-        type: STRING,
+        type: DataTypes.STRING,
       }
     })
   },
