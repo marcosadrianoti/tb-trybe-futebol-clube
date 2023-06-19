@@ -2,7 +2,7 @@ import { ServiceResponse } from '../Interfaces/ServiceResponse';
 import ILeaderBoard from '../Interfaces/ILeaderBoard';
 import SeqMatcheModel from '../database/models/SeqMatcheModel';
 import SeqTeamModel from '../database/models/SeqTeamModel';
-import returnLeaderBoard from '../utils/returnLeaderBoard';
+import returnLeaderBoard, { orderLeaderBoard } from '../utils/returnLeaderBoard';
 
 export default class LeaderBoardService {
   private _seqTeamModel = SeqTeamModel;
@@ -14,7 +14,8 @@ export default class LeaderBoardService {
     });
     const allTeams = await this._seqTeamModel.findAll();
     const leaderBoard = returnLeaderBoard(allTeams, endedMatches);
+    const orderedLeaderBoard = orderLeaderBoard(leaderBoard);
 
-    return { status: 'SUCCESSFUL', data: leaderBoard };
+    return { status: 'SUCCESSFUL', data: orderedLeaderBoard };
   }
 }

@@ -1,6 +1,5 @@
 import { Request, Router, Response } from 'express';
 import TeamsController from '../controllers/TeamController';
-// import Validations from '../middlewares/Validations';
 
 const teamsController = new TeamsController();
 

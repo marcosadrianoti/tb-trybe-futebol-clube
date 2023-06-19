@@ -1,6 +1,5 @@
 import { Request, Response } from 'express';
 import MatchService from '../services/MatchService';
-// import SeqMatcheModel from '../database/models/SeqMatcheModel';
 import SeqTeamModel from '../database/models/SeqTeamModel';
 
 export default class MatchController {

@@ -14,7 +14,6 @@ export default class LoginService {
     }
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email) || password.length < 6) {
-      // return res.status(401).json({ message: 'Invalid email or password' });
       return { status: 'UNAUTHORIZED', data: { message: 'Invalid email or password' } };
     }
     const userData = await this._loginModel.userLogin(email);
@@ -23,10 +22,8 @@ export default class LoginService {
     }
 
     const { password: _password, ...payload } = userData;
-    // const { dataValues } = userData;
 
     const myToken = sign(payload);
-    // const myToken = sign({ email: payload.email, username: payload.username });
 
     return { status: 'SUCCESSFUL', data: myToken };
   }

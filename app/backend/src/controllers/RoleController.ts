@@ -8,8 +8,6 @@ export default class RoleController {
   ) {}
 
   public async findRole(req: Request, res: Response): Promise<Response> {
-    // const { authorization } = req.headers;
-    console.log('req.body', req.body);
     const { role } = req.body.dataToken;
 
     const ServiceResponse = await this._roleService.findRole(role);
