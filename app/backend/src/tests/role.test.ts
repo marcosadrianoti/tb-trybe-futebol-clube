@@ -8,8 +8,6 @@ import * as jwt from '../utils/jwt';
 
 import { app } from '../app';
 
-import SeqUserModel from '../database/models/SeqUserModel';
-
 chai.use(chaiHttp);
 
 const { expect } = chai;
@@ -17,16 +15,15 @@ const { expect } = chai;
 describe('Role', () => {
   beforeEach(sinon.restore);
   it('Get role', async function(){
-    sinon.stub(SeqUserModel, 'findOne').resolves({} as any);
     sinon.stub(jwt, 'verify').returns({
           username: 'Admin',
           email: 'admin@admin.com',
+          role: 'admin',
         })
     const { status, body } = await chai.request(app).get('/login/role')
-    .set('authorization', token.token);;
-    console.log('Body role =====>',body);
+    .set('authorization', token.token);
     
     expect(status).to.be.equal(200);
-    expect(body).to.be.deep.equal({});
+    expect(body).to.be.deep.equal({ role: "admin" });
   })
 });

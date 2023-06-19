@@ -9,7 +9,6 @@ export default class RoleController {
 
   public async findRole(req: Request, res: Response): Promise<Response> {
     const { role } = req.body.dataToken;
-
     const ServiceResponse = await this._roleService.findRole(role);
     const statusHttp = mapStatusHTTP(ServiceResponse.status);
     if (ServiceResponse.status !== 'SUCCESSFUL') {

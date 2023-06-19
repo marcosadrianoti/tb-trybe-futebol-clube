@@ -17,7 +17,7 @@ const { expect } = chai;
 
 describe('Matches', () => {
   beforeEach(sinon.restore);
-  it('Deve mostrar todos os matches', async function(){
+  it('Show all matches', async function(){
     sinon.stub(Match, 'findAll').resolves(matchesMock.matches as any);
 
     const { status, body } = await chai.request(app).get('/matches');
@@ -33,11 +33,12 @@ describe('Matches', () => {
     expect(status).to.be.equal(200);
     expect(body).to.be.deep.equal(matchesMock.matches);
   })
-  it('Teste do requisito 17', async function(){
+  it('Macth finished', async function(){
     sinon.stub(Match, 'update').resolves();
     sinon.stub(jwt, 'verify').returns({
       username: 'Admin',
       email: 'admin@admin.com',
+      role: 'admin',
     })
 
     const { status, body } = await chai.request(app)
@@ -52,6 +53,7 @@ describe('Matches', () => {
     sinon.stub(jwt, 'verify').returns({
       username: 'Admin',
       email: 'admin@admin.com',
+      role: 'role',
     })
 
     const { status, body } = await chai.request(app)
@@ -77,6 +79,7 @@ describe('Matches', () => {
     sinon.stub(jwt, 'verify').returns({
       username: 'Admin',
       email: 'admin@admin.com',
+      role: 'role',
     })
 
     const { status, body } = await chai.request(app)

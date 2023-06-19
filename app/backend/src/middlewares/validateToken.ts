@@ -9,7 +9,6 @@ const validateToken = (req: Request, res: Response, next: NextFunction) => {
   try {
     const decodedToken = verify(token);
     req.body.dataToken = decodedToken;
-    console.log(decodedToken);
     next();
   } catch (error) {
     return res.status(401).json({ message: 'Token must be a valid token' });
