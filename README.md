@@ -4,7 +4,7 @@ Projeto desenvolvido por mim durante o curso de Desenvolvimento Web na Trybe. Di
 <details>
 <summary><strong>Objetivos do projeto:</strong></summary>
 
-  * Desenvolver um jogo de interpretação de papéis, mais conhecido como jogo `RPG` - _Role Playing Game_.
+  * Construir um back-end `dockerizado` utilizando modelagem de dados através do `Sequelize`.
   * Verificar se eu era capaz de:
     * Aplicar os princípios da arquitetura `SOLID`.
     * Aplicar os princípios de `POO`.
@@ -54,7 +54,7 @@ npm install
 Com o Docker instalado em sua máquina, execute:
 
 ```bash
-docker-compose up -d
+npm run compose:up
 ```
 
 Execute a aplicação:
