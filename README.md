@@ -3,11 +3,12 @@ Projeto desenvolvido por mim durante o curso de Desenvolvimento Web na Trybe. Di
 
 <details>
 <summary><strong>Objetivos do projeto:</strong></summary>
-
+ 
+OBS: Front-end já disponível no projeto.
   * Construir um back-end `dockerizado` utilizando modelagem de dados através do `Sequelize`.
   * Verificar se eu era capaz de:
-    * Aplicar os princípios da arquitetura `SOLID`.
-    * Aplicar os princípios de `POO`.
+    * Aplicar o método `TDD`.
+    * Utilizar `docker-compose`.
 </details>
 <details>
 <summary><strong> Requisitos do projeto:</strong></summary>
