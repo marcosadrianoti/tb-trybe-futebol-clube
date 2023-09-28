@@ -55,13 +55,13 @@ cd meu-diretorio
 Clone o projeto com o comando `git clone`:
 
 ```bash
-git clone git@github.com:marcosadrianoti/tb-trybes-and-dragons.git
+git clone git@github.com:marcosadrianoti/tb-trybe-futebol-clube.git
 ```
 
 Acesse o diretório do projeto com o comando `cd`:
 
 ```bash
-cd tb-trybes-and-dragons
+cd tb-trybe-futebol-clube
 ```
 
 Instale as dependências executando:
